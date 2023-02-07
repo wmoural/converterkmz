@@ -2,19 +2,20 @@ import streamlit as st
 import fiona
 import geopandas as gpd
 
-def convert_kmz_to_shp(kmz_file):
-    # Carregar o arquivo .kml como um GeoDataFrame
-    gdf = gpd.read_file(kmz_file)
+def convert_to_shp(file):
+    # Carregar o arquivo como um GeoDataFrame
+    gdf = gpd.read_file(file)
 
     # Escrever o GeoDataFrame como um shapefile
-    gdf.to_file("arquivo.shp", driver="ESRI Shapefile")
+    filename = file.split(".")[0] + ".shp"
+    gdf.to_file(filename, driver="ESRI Shapefile")
     
-    return "Arquivo convertido com sucesso!"
+    return f"Arquivo convertido com sucesso para {filename}!"
 
-st.title("Conversor de KMZ para Shapefile")
+st.title("Conversor de KML/KMZ para Shapefile")
 
-file = st.file_uploader("Escolha o arquivo KMZ", type=["kmz"])
+file = st.file_uploader("Escolha o arquivo KML/KMZ", type=["kml", "kmz"])
 
 if file:
-    result = convert_kmz_to_shp(file)
+    result = convert_to_shp(file)
     st.success(result)
