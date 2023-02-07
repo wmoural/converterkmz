@@ -1,3 +1,4 @@
-fiona
-strealit
-geopandas
+fiona==1.9.0
+streamlit==1.16.0
+geopandas==0.12.2
+requests==2.28.1
