@@ -1,5 +1,4 @@
 import streamlit as st
-import fiona
 import geopandas as gpd
 
 def convert_to_shp(file):
